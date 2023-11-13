@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sign Up</title>
+    <style>
+        /* Add your CSS styles here to customize the page's appearance */
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .button {
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    text-align: center;
+    font-size: 15px;
+}
+
+.button:hover {
+    background-color: #0056b3;
+}
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            
+        }
+        .form-group {
+            margin-bottom: 15px;
+           
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input[type="text"], input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            
+        }
+        input[type="submit"] {
+            background-color: #007BFF;
+            color: #fff;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Sign Up</h2>
+        <form action="signup" method="post">
+        {% csrf_token %}
+            <div class="form-group">
+                <label for="username">Name:</label>
+                <input type="text" id="username" name="name" required>
+            </div>
+            <div class = "form-group">
+                <label for="email">Email:</label>
+                <input type="text" id="email" name="email" required>
+            </div>
+            <div class = "form-group">
+                <label for="phone">Phone:</label>
+                <input type="text" id="phone" name="contact" required>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <div class="form-group">
+                <label for="confirm_password">Confirm Password:</label>
+                <input type="password" id="confirm_password" name="confirmpassword" required>
+            </div>
+            <button type="submit" class= "button" style = "width :100%">Sign Up</button>
+          <a href = "login" style = "text-decoration : none">  <p class = "button">Log in Instead </p> </a>
+        </form>
+    </div>
+{% if message == 'Password and Confirm Password do not match' %}
+<script>
+    alert("Password and Confirm Password do not match");
+</script>
+{% comment %} {% elif message == 'Some Error Occured' %}
+<script>
+    alert("Some Error Occured, if the issue persists please contact the administrator");
+</script> {% endcomment %}
+{% elif message == 'Contact Number already exists'%}
+<script>
+    alert("Contact Number already exists");
+</script>
+{% endif %}
+
+</body>
+</html>
